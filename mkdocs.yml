@@ -1,7 +1,7 @@
 site_name: Python для Swift-розробника
 site_description: Курс вивчення Python через порівняння зі Swift
 docs_dir: .
-site_dir: site
+site_dir: ../python-for-swift-site
 use_directory_urls: true
 
 theme:
@@ -39,7 +39,9 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
-      slugify: !!python/name:pymdownx.slugs.slugify
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences
@@ -48,10 +50,7 @@ markdown_extensions:
   - pymdownx.snippets
 
 plugins:
-  - search:
-      lang:
-        - uk
-        - en
+  - search
 
 exclude_docs: |
   _ENRICHMENT-PLAN.md
