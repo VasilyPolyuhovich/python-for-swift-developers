@@ -2,6 +2,8 @@
 
 [![Читати онлайн](https://img.shields.io/badge/📖_Читати_онлайн-MkDocs_сайт-blue)](https://vasilypolyuhovich.github.io/python-for-swift-developers/)
 [![Python](https://img.shields.io/badge/Python-3.13_|_3.14-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![CI](https://github.com/VasilyPolyuhovich/python-for-swift-developers/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/VasilyPolyuhovich/python-for-swift-developers/actions/workflows/ci.yml)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 > **📖 Зручніше читати на сайті з пошуком:**
 > **https://vasilypolyuhovich.github.io/python-for-swift-developers/**
@@ -89,3 +91,12 @@ uv run python
 ## Автор
 
 **Vasyl Poliukhovych** — [GitHub](https://github.com/VasilyPolyuhovich).
+
+## Ліцензія
+
+Матеріали курсу (текст) — під ліцензією
+[Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/):
+можна вільно ділитися й адаптувати з зазначенням авторства. Повний текст — у файлі
+[`LICENSE`](LICENSE).
+
+Приклади коду в курсі можна використовувати вільно, без зазначення авторства.

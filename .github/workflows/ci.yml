@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  examples:
+    name: Перевірка прикладів (Python 3.14)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Run example tests
+        run: uvx -p 3.14 --with pytest pytest tests/ -q
+
+  docs-check:
+    name: Збірка docs (--strict, link/anchor check)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Strict build (fails on broken links/nav/anchors)
+        run: uvx --from mkdocs --with mkdocs-material mkdocs build --strict -f mkdocs.yml
