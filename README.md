@@ -1,5 +1,11 @@
 # Python для Swift-розробника
 
+[![Читати онлайн](https://img.shields.io/badge/📖_Читати_онлайн-MkDocs_сайт-blue)](https://vasilypolyuhovich.github.io/python-for-swift-developers/)
+[![Python](https://img.shields.io/badge/Python-3.13_|_3.14-blue?logo=python&logoColor=white)](https://www.python.org/)
+
+> **📖 Зручніше читати на сайті з пошуком:**
+> **https://vasilypolyuhovich.github.io/python-for-swift-developers/**
+
 Курс вивчення Python через порівняння зі Swift. Розрахований на досвідченого
 розробника, який вже добре знає Swift (типи, протоколи, дженеріки, `async/await`)
 і хоче швидко й *правильно* перейти на Python — без легасі-звичок.
