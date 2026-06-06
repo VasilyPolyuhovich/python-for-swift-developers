@@ -1,0 +1,100 @@
+site_name: Python для Swift-розробника
+site_description: Курс вивчення Python через порівняння зі Swift
+docs_dir: .
+site_dir: ../python-for-swift-site
+use_directory_urls: true
+
+theme:
+  name: material
+  language: uk
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Темна тема
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Світла тема
+  features:
+    - navigation.indexes      # хаб модуля = посадкова сторінка секції
+    - navigation.top          # кнопка "нагору"
+    - navigation.tracking
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy       # кнопка копіювання коду
+    - content.code.annotate
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.snippets
+
+plugins:
+  - search
+
+exclude_docs: |
+  _ENRICHMENT-PLAN.md
+  site/
+
+nav:
+  - Головна: README.md
+  - Тематичний індекс: INDEX.md
+  - 00 · Інструментарій і ментальна модель: 00-tooling-and-mental-model.md
+  - 01 · Синтаксис і керування потоком:
+      - 01-syntax-and-control-flow.md
+      - Рядки — довідник методів: 01-syntax-and-control-flow/strings.md
+      - Structural pattern matching: 01-syntax-and-control-flow/match.md
+  - 02 · Функції:
+      - 02-functions.md
+      - Декоратори: 02-functions/decorators.md
+  - 03 · Структури даних:
+      - 03-data-structures.md
+      - list: 03-data-structures/list.md
+      - dict: 03-data-structures/dict.md
+      - set: 03-data-structures/set.md
+      - tuple: 03-data-structures/tuple.md
+      - Comprehensions: 03-data-structures/comprehensions.md
+      - Сортування: 03-data-structures/sorting.md
+      - Конвертації типів: 03-data-structures/conversions.md
+  - 04 · Типи та система типів: 04-types-and-typing.md
+  - 05 · Класи та ООП:
+      - 05-classes-and-oop.md
+      - Dunder-методи: 05-classes-and-oop/dunder-methods.md
+      - Дескриптори та метакласи: 05-classes-and-oop/descriptors-and-metaclasses.md
+  - 06 · «Структури» та value-типи: 06-structs-and-value-types.md
+  - 07 · Дженеріки: 07-generics.md
+  - 08 · Інтерфейси / протоколи: 08-protocols-and-interfaces.md
+  - 09 · Ітератори та генератори: 09-iterators-and-generators.md
+  - 10 · Помилки та винятки: 10-errors-and-exceptions.md
+  - 11 · Модулі, пакети, проєкти: 11-modules-and-packages.md
+  - 12 · Асинхронність: 12-async.md
+  - 13 · Стандартна бібліотека та екосистема:
+      - 13-stdlib-and-ecosystem.md
+      - Файли та серіалізація: 13-stdlib-and-ecosystem/files-and-serialization.md
+      - Дати та час: 13-stdlib-and-ecosystem/datetime.md
+      - Регулярні вирази: 13-stdlib-and-ecosystem/regex.md
+      - Процеси та ОС: 13-stdlib-and-ecosystem/subprocess-and-os.md
+      - CLI-застосунки: 13-stdlib-and-ecosystem/cli.md
+      - SQLite: 13-stdlib-and-ecosystem/sqlite.md
+      - Тестування (pytest): 13-stdlib-and-ecosystem/pytest.md
+      - Паралелізм: 13-stdlib-and-ecosystem/concurrency.md

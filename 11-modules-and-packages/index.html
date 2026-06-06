@@ -1,0 +1,2508 @@
+
+<!doctype html>
+<html lang="uk" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Курс вивчення Python через порівняння зі Swift">
+      
+      
+      
+      
+        <link rel="prev" href="../10-errors-and-exceptions/">
+      
+      
+        <link rel="next" href="../12-async/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>11 · Модулі, пакети, проєкти - Python для Swift-розробника</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#модуль-11-модулі-пакети-проєкти" class="md-skip">
+          Перейти до змісту
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Хедер">
+    <a href=".." title="Python для Swift-розробника" class="md-header__button md-logo" aria-label="Python для Swift-розробника" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python для Swift-розробника
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11 · Модулі, пакети, проєкти
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Темна тема"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Темна тема" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Світла тема"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Світла тема" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Пошук" placeholder="Пошук" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Шукати">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистити" aria-label="Очистити" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Пошук розпочато
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навігація" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python для Swift-розробника" class="md-nav__button md-logo" aria-label="Python для Swift-розробника" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python для Swift-розробника
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Головна
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тематичний індекс
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-tooling-and-mental-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 · Інструментарій і ментальна модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Синтаксис і керування потоком
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    01 · Синтаксис і керування потоком
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-syntax-and-control-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 01. Синтаксис і керування потоком
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-syntax-and-control-flow/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Рядки — довідник методів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-syntax-and-control-flow/match/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structural pattern matching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Функції
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    02 · Функції
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 02. Функції
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-functions/decorators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Декоратори
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Структури даних
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    03 · Структури даних
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 03. Структури даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/dict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dict
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/tuple/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tuple
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/comprehensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comprehensions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/sorting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сортування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/conversions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конвертації типів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-types-and-typing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Типи та система типів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Класи та ООП
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    05 · Класи та ООП
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-classes-and-oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 05. Класи та ООП
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-classes-and-oop/dunder-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dunder-методи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-classes-and-oop/descriptors-and-metaclasses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дескриптори та метакласи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-structs-and-value-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · «Структури» та value-типи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-generics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Дженеріки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-protocols-and-interfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Інтерфейси / протоколи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-iterators-and-generators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Ітератори та генератори
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-errors-and-exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Помилки та винятки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Модулі, пакети, проєкти
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Модулі, пакети, проєкти
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Зміст">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Зміст
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-модуль--файл" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Модуль = файл
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-пакет--тека" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Пакет = тека
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-абсолютні-vs-відносні-імпорти" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Абсолютні vs відносні імпорти
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-if-__name__--__main__--точка-входу" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. if __name__ == "__main__": — точка входу
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. if __name__ == &#34;__main__&#34;: — точка входу">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#циклічні-імпорти" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Циклічні імпорти
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#динамічні-імпорти--importlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Динамічні імпорти — importlib
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-структура-сучасного-проєкту" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Структура сучасного проєкту
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-залежності-та-віртуальні-середовища" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Залежності та віртуальні середовища
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Залежності та віртуальні середовища">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#концепція" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Концепція
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#з-uv-рекомендовано" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        З uv (рекомендовано)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#класичний-підхід-знати-корисно" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Класичний підхід (знати корисно)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-шлях-пошуку-модулів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Шлях пошуку модулів
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-публікація-пакета-коротко" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Публікація пакета (коротко)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-entry-points-версія-editable-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Entry points, версія, editable-install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Entry points, версія, editable-install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#console-scripts--cli-команди-пакета" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console scripts — CLI-команди пакета
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__version__-і-importlibmetadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __version__ і importlib.metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editable-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editable install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespace-packages-коротко" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace packages (коротко)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#інструменти-та-бібліотеки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Інструменти та бібліотеки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-модуля" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices модуля
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#див-також" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Див. також
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Асинхронність
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Стандартна бібліотека та екосистема
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    13 · Стандартна бібліотека та екосистема
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 13. Стандартна бібліотека та екосистема
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/files-and-serialization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Файли та серіалізація
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/datetime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дати та час
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/regex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Регулярні вирази
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/subprocess-and-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процеси та ОС
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI-застосунки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/sqlite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQLite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/pytest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тестування (pytest)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Паралелізм
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Зміст">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Зміст
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-модуль--файл" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Модуль = файл
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-пакет--тека" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Пакет = тека
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-абсолютні-vs-відносні-імпорти" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Абсолютні vs відносні імпорти
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-if-__name__--__main__--точка-входу" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. if __name__ == "__main__": — точка входу
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. if __name__ == &#34;__main__&#34;: — точка входу">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#циклічні-імпорти" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Циклічні імпорти
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#динамічні-імпорти--importlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Динамічні імпорти — importlib
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-структура-сучасного-проєкту" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Структура сучасного проєкту
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-залежності-та-віртуальні-середовища" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Залежності та віртуальні середовища
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Залежності та віртуальні середовища">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#концепція" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Концепція
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#з-uv-рекомендовано" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        З uv (рекомендовано)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#класичний-підхід-знати-корисно" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Класичний підхід (знати корисно)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-шлях-пошуку-модулів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Шлях пошуку модулів
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-публікація-пакета-коротко" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Публікація пакета (коротко)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-entry-points-версія-editable-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Entry points, версія, editable-install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Entry points, версія, editable-install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#console-scripts--cli-команди-пакета" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console scripts — CLI-команди пакета
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__version__-і-importlibmetadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __version__ і importlib.metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editable-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editable install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespace-packages-коротко" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace packages (коротко)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#інструменти-та-бібліотеки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Інструменти та бібліотеки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-модуля" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices модуля
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#див-також" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Див. також
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="модуль-11-модулі-пакети-проєкти">Модуль 11. Модулі, пакети, проєкти<a class="headerlink" href="#модуль-11-модулі-пакети-проєкти" title="Permanent link">&para;</a></h1>
+<p><a href="../">← Курс</a> · <a href="../INDEX/">Тематичний індекс</a> · <strong>Модуль 11</strong></p>
+<p>Туторіал: <a href="https://docs.python.org/uk/3/tutorial/modules.html">§6 Модулі</a>,
+<a href="https://docs.python.org/uk/3/tutorial/venv.html">§12 Віртуальні середовища</a>.</p>
+<p>Система модулів Python концептуально схожа на SwiftPM (modules/targets/packages),
+але дрібніша за гранулярністю: <strong>кожен <code>.py</code>-файл — це модуль</strong>, а тека з файлами —
+пакет.</p>
+<h2 id="1-модуль--файл">1. Модуль = файл<a class="headerlink" href="#1-модуль--файл" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>myapp/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── math_utils.py        # модуль &quot;math_utils&quot;
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>└── main.py
+</code></pre></div>
+<p><code>math_utils.py</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">PI</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</code></pre></div></p>
+<p><code>main.py</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math_utils</span>                       <span class="c1"># імпорт усього модуля</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">math_utils</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">math_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">square</span><span class="p">,</span> <span class="n">PI</span>       <span class="c1"># імпорт конкретних імен</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">math_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">square</span> <span class="k">as</span> <span class="n">sq</span>     <span class="c1"># з псевдонімом</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math_utils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mu</span>                 <span class="c1"># псевдонім модуля</span>
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">import</span><span class="w"> </span><span class="nc">MathUtils</span><span class="w">          </span><span class="c1">// Swift: імпортує весь модуль (target)</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка №1.</strong> У Swift <code>import</code> тягне весь модуль, і всі public-символи
+доступні. У Python <code>import math_utils</code> вимагає префікса <code>math_utils.square</code>, а
+<code>from math_utils import square</code> вносить <code>square</code> у поточний неймспейс. Обирай
+свідомо.</p>
+<p><strong>Best practice.</strong> Уникай <code>from module import *</code> — він засмічує неймспейс і
+ховає походження імен. <code>ruff</code> (F403) попередить. Імпортуй явно.</p>
+</blockquote>
+<h2 id="2-пакет--тека">2. Пакет = тека<a class="headerlink" href="#2-пакет--тека" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>myapp/
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>├── __init__.py          # робить теку пакетом (може бути порожнім)
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>├── core/
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│   ├── __init__.py
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│   ├── models.py
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│   └── services.py
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>└── utils/
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    ├── __init__.py
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    └── text.py
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myapp.core.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>           <span class="c1"># абсолютний імпорт (рекомендовано)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myapp.utils.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">slugify</span>
+</code></pre></div>
+<p><code>__init__.py</code> виконується при імпорті пакета. Часто використовується, щоб
+підняти публічний API наверх (як re-export):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># myapp/core/__init__.py</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myapp.core.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myapp.core.services</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserService</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="s2">&quot;UserService&quot;</span><span class="p">]</span>      <span class="c1"># явний публічний API пакета</span>
+</code></pre></div>
+<p>Тоді споживач пише коротко: <code>from myapp.core import User, UserService</code>.</p>
+<blockquote>
+<p><strong><code>__all__</code></strong> — список публічних імен пакета/модуля. Контролює, що експортує
+<code>from package import *</code>, і документує публічний API. Аналог <code>public</code>-маркування
+у Swift, але декларативний список.</p>
+</blockquote>
+<h2 id="3-абсолютні-vs-відносні-імпорти">3. Абсолютні vs відносні імпорти<a class="headerlink" href="#3-абсолютні-vs-відносні-імпорти" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Абсолютний (РЕКОМЕНДОВАНО — однозначний)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myapp.utils.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">slugify</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Відносний (від поточного пакета)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">slugify</span>          <span class="c1"># . = поточний пакет</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">..core.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>      <span class="c1"># .. = батьківський пакет</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Best practice.</strong> Використовуй <strong>абсолютні</strong> імпорти. Відносні допустимі
+всередині пакета, але абсолютні читабельніші й стабільніші при рефакторингу.</p>
+</blockquote>
+<h2 id="4-if-__name__--__main__--точка-входу">4. <code>if __name__ == "__main__":</code> — точка входу<a class="headerlink" href="#4-if-__name__--__main__--точка-входу" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;running&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>          <span class="c1"># виконається ЛИШЕ при прямому запуску</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>Коли файл запускають напряму (<code>python main.py</code>), <code>__name__ == "__main__"</code>. Коли
+його імпортують, <code>__name__</code> — це ім'я модуля. Тобто блок не виконається при
+імпорті. Це аналог <code>@main</code> у Swift, але як рантайм-перевірка.</p>
+<blockquote>
+<p><strong>⚠️ Пастка №2.</strong> Без цієї перевірки код верхнього рівня модуля виконається при
+<em>кожному імпорті</em>. Завжди обгортай точку входу в <code>if __name__ == "__main__":</code>.</p>
+</blockquote>
+<h3 id="циклічні-імпорти">Циклічні імпорти<a class="headerlink" href="#циклічні-імпорти" title="Permanent link">&para;</a></h3>
+<p>Якщо <code>a.py</code> імпортує <code>b</code>, а <code>b.py</code> імпортує <code>a</code> — отримаєш <code>ImportError</code> або
+напівініціалізований модуль (бо імпорт виконує модуль зверху вниз, і на момент
+циклу частина імен ще не існує).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># ❌ a.py: from b import foo   ←┐</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># ❌ b.py: from a import bar   ←┘  цикл на рівні модуля</span>
+</code></pre></div>
+<p>Як лагодити (за пріоритетом):
+1. <strong>Перепроєктуй</strong> — винеси спільне у третій модуль (<code>common.py</code>), від якого
+   залежать обидва. Цикл зазвичай = знак неправильних меж.
+2. <strong>Імпортуй усередині функції</strong> (lazy import) — не на верхньому рівні:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">a</span><span class="w"> </span><span class="kn">import</span> <span class="n">foo</span>     <span class="c1"># імпорт у момент виклику, коли модулі вже готові</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="n">foo</span><span class="p">()</span>
+</code></pre></div>
+3. Імпортуй <strong>модуль</strong>, а не імена (<code>import a; a.foo()</code> замість <code>from a import foo</code>).</p>
+<blockquote>
+<p><strong>Best practice.</strong> Цикл імпортів — майже завжди симптом тісного зв'язування.
+Спершу подумай про межі модулів (<a href="../08-protocols-and-interfaces/">Модуль 08</a>:
+залежності через протоколи), а lazy import лиши як крайній засіб.</p>
+</blockquote>
+<h3 id="динамічні-імпорти--importlib">Динамічні імпорти — <code>importlib</code><a class="headerlink" href="#динамічні-імпорти--importlib" title="Permanent link">&para;</a></h3>
+<p>Коли ім'я модуля відоме лише в рантаймі (плагіни, конфіги):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">mod</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>     <span class="c1"># імпорт за рядком-іменем</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">mod</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>                        <span class="c1"># &#39;{&quot;a&quot;: 1}&#39;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">plugin</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;myapp.plugins.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>   <span class="c1"># плагін за іменем</span>
+</code></pre></div>
+<p>Це аналог рефлексивного завантаження; стандартний спосіб робити плагінні системи.</p>
+<h2 id="5-структура-сучасного-проєкту">5. Структура сучасного проєкту<a class="headerlink" href="#5-структура-сучасного-проєкту" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>my-project/
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>├── pyproject.toml          # маніфест (аналог Package.swift)
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>├── uv.lock                 # lock-файл (аналог Package.resolved)
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>├── README.md
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>├── src/
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>│   └── my_project/         # пакет (зверни увагу: підкреслення, не дефіс)
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>│       ├── __init__.py
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>│       ├── core/
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>│       └── cli.py
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>└── tests/
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    └── test_core.py
+</code></pre></div>
+<p><code>pyproject.toml</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[project]</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-project&quot;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.13&quot;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;httpx&gt;=0.27&quot;</span><span class="p">]</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">[build-system]</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;hatchling&quot;</span><span class="p">]</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hatchling.build&quot;</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="k">[dependency-groups]</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pyright&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pytest&quot;</span><span class="p">]</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="k">[tool.pyright]</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="n">typeCheckingMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;strict&quot;</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="k">[tool.ruff.lint]</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;UP&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;SIM&quot;</span><span class="p">]</span>
+</code></pre></div></p>
+<blockquote>
+<p><strong>Best practice (<code>src</code>-layout).</strong> Тримай код у <code>src/my_project/</code>, а не в корені.
+Це запобігає випадковому імпорту з робочої теки замість встановленого пакета й
+ловить помилки пакування. Це сучасний стандарт.</p>
+</blockquote>
+<h2 id="6-залежності-та-віртуальні-середовища">6. Залежності та віртуальні середовища<a class="headerlink" href="#6-залежності-та-віртуальні-середовища" title="Permanent link">&para;</a></h2>
+<h3 id="концепція">Концепція<a class="headerlink" href="#концепція" title="Permanent link">&para;</a></h3>
+<p>Кожен проєкт має ізольоване <strong>віртуальне середовище</strong> (venv) з власними версіями
+залежностей — щоб проєкти не конфліктували. Це як ізоляція залежностей у SwiftPM
+на рівні проєкту, але створюється явно.</p>
+<h3 id="з-uv-рекомендовано">З uv (рекомендовано)<a class="headerlink" href="#з-uv-рекомендовано" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>uv<span class="w"> </span>add<span class="w"> </span>httpx<span class="w">                </span><span class="c1"># додати залежність + оновити lock + встановити</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>uv<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>pytest<span class="w">         </span><span class="c1"># dev-залежність</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>uv<span class="w"> </span>remove<span class="w"> </span>httpx<span class="w">             </span><span class="c1"># прибрати</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>uv<span class="w"> </span>sync<span class="w">                     </span><span class="c1"># відтворити середовище з lock (на новій машині/CI)</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>main.py<span class="w">       </span><span class="c1"># запустити в середовищі проєкту</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade<span class="w">           </span><span class="c1"># оновити версії в межах обмежень</span>
+</code></pre></div>
+<p><code>uv</code> автоматично створює <code>.venv/</code> і <code>uv.lock</code>. Тобі майже ніколи не треба
+активувати середовище вручну — <code>uv run</code> робить це сам.</p>
+<h3 id="класичний-підхід-знати-корисно">Класичний підхід (знати корисно)<a class="headerlink" href="#класичний-підхід-знати-корисно" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w">            </span><span class="c1"># створити venv</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">       </span><span class="c1"># активувати (macOS/Linux)</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>pip<span class="w"> </span>install<span class="w"> </span>httpx<span class="w">               </span><span class="c1"># встановити</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt<span class="w">   </span><span class="c1"># зафіксувати (примітивний lock)</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>deactivate
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка №3.</strong> Ніколи не став пакети в системний/глобальний Python через
+<code>pip install</code> без venv — зламаєш систему й створиш конфлікти. Завжди — venv
+(або <code>uv</code>, який робить це за тебе).</p>
+</blockquote>
+<h2 id="7-шлях-пошуку-модулів">7. Шлях пошуку модулів<a class="headerlink" href="#7-шлях-пошуку-модулів" title="Permanent link">&para;</a></h2>
+<p>Python шукає модулі в <code>sys.path</code> (поточна тека, встановлені пакети, stdlib). Коли
+проєкт встановлено (<code>uv sync</code> робить editable-install), твій пакет імпортується
+звідусіль за іменем.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>        <span class="c1"># подивитись, де Python шукає</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка №4.</strong> «ModuleNotFoundError» зазвичай означає: пакет не встановлено в
+активне середовище, або структура тек/<code>__init__.py</code> неправильна, або плутанина
+з <code>src</code>-layout. Перевір <code>uv sync</code> і структуру.</p>
+</blockquote>
+<h2 id="8-публікація-пакета-коротко">8. Публікація пакета (коротко)<a class="headerlink" href="#8-публікація-пакета-коротко" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>uv<span class="w"> </span>build<span class="w">                    </span><span class="c1"># зібрати wheel + sdist у dist/</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>uv<span class="w"> </span>publish<span class="w">                  </span><span class="c1"># опублікувати на PyPI</span>
+</code></pre></div>
+<p>PyPI — це аналог реєстру пакетів. Версіонування — семантичне (SemVer), як у SwiftPM.</p>
+<h2 id="9-entry-points-версія-editable-install">9. Entry points, версія, editable-install<a class="headerlink" href="#9-entry-points-версія-editable-install" title="Permanent link">&para;</a></h2>
+<h3 id="console-scripts--cli-команди-пакета">Console scripts — CLI-команди пакета<a class="headerlink" href="#console-scripts--cli-команди-пакета" title="Permanent link">&para;</a></h3>
+<p>Щоб після встановлення пакета з'явилася команда в терміналі (як виконуваний
+продукт SwiftPM), оголоси entry point у <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[project.scripts]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">mytool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_project.cli:main&quot;</span><span class="w">     </span><span class="c1"># команда `mytool` → викличе main() з cli.py</span>
+</code></pre></div>
+<p>Після <code>uv sync</code>/встановлення <code>mytool</code> доступна в середовищі. Це і є механізм
+плагінів та CLI-утиліт (так роблять <code>ruff</code>, <code>pytest</code> тощо).</p>
+<h3 id="__version__-і-importlibmetadata"><code>__version__</code> і <code>importlib.metadata</code><a class="headerlink" href="#__version__-і-importlibmetadata" title="Permanent link">&para;</a></h3>
+<p>Версію пакета не дублюй вручну — читай із метаданих встановленого дистрибутиву:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">importlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">metadata</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">__version__</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="s2">&quot;my-project&quot;</span><span class="p">)</span>   <span class="c1"># бере з pyproject (single source)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">metadata</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="s2">&quot;httpx&quot;</span><span class="p">)</span>          <span class="c1"># версія залежності (якщо встановлена)</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1"># metadata.version(&quot;absent&quot;)       # PackageNotFoundError, якщо не встановлено</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nb">list</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">distributions</span><span class="p">())</span>     <span class="c1"># усі встановлені дистрибутиви</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">metadata</span><span class="o">.</span><span class="n">entry_points</span><span class="p">()</span>            <span class="c1"># доступ до entry points (для плагінних систем)</span>
+</code></pre></div>
+<h3 id="editable-install">Editable install<a class="headerlink" href="#editable-install" title="Permanent link">&para;</a></h3>
+<p><code>uv sync</code> встановлює твій пакет у режимі <strong>editable</strong> (як <code>pip install -e .</code>):
+зміни в <code>src/</code> одразу видно без перевстановлення. Це стандарт для розробки.</p>
+<h3 id="namespace-packages-коротко">Namespace packages (коротко)<a class="headerlink" href="#namespace-packages-коротко" title="Permanent link">&para;</a></h3>
+<p>Тека <strong>без</strong> <code>__init__.py</code> може бути <em>namespace package</em> — пакет, розкиданий по
+кількох місцях/дистрибутивах (для плагінних екосистем). Для звичайних проєктів
+це не потрібно — додавай <code>__init__.py</code>; namespace packages — нішевий інструмент.</p>
+<h2 id="інструменти-та-бібліотеки">Інструменти та бібліотеки<a class="headerlink" href="#інструменти-та-бібліотеки" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>uv</code></strong> — версії Python, venv, залежності, build, publish (усе в одному).</li>
+<li><strong><code>hatchling</code></strong> / <strong><code>setuptools</code></strong> — build-backend (зазвичай <code>hatchling</code>).</li>
+<li><strong><code>pip</code></strong> — базовий менеджер (uv його замінює, але знати треба).</li>
+<li><strong><code>pipx</code></strong> / <code>uv tool</code> — встановлення CLI-утиліт ізольовано й глобально.</li>
+</ul>
+<h2 id="best-practices-модуля">Best practices модуля<a class="headerlink" href="#best-practices-модуля" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Кожен <code>.py</code> — модуль; тека з <code>__init__.py</code> — пакет.</li>
+<li>Абсолютні імпорти; уникай <code>import *</code>.</li>
+<li><code>__all__</code> для явного публічного API.</li>
+<li>Точку входу — в <code>if __name__ == "__main__":</code>.</li>
+<li><code>src</code>-layout для серйозних проєктів.</li>
+<li>Завжди venv (через <code>uv</code>); ніколи не став у системний Python.</li>
+<li><code>pyproject.toml</code> — єдине джерело правди про проєкт.</li>
+<li>Цикли імпортів лагодь перепроєктуванням, не lazy-import-ами.</li>
+<li><code>__version__</code> бери з <code>importlib.metadata</code>, не дублюй; CLI — через <code>[project.scripts]</code>.</li>
+</ul>
+<h2 id="див-також">Див. також<a class="headerlink" href="#див-також" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../00-tooling-and-mental-model/">Модуль 00 — Інструментарій</a> — <code>uv</code>, sys.path, import-механіка, <code>.pyc</code>.</li>
+<li><a href="../08-protocols-and-interfaces/">Модуль 08 — Протоколи</a> — розв'язання залежностей, межі модулів.</li>
+<li><a href="../13-stdlib-and-ecosystem/">Модуль 13 — Stdlib</a> — <code>argparse</code>/Typer для CLI, екосистема.</li>
+<li><a href="../INDEX/">Тематичний індекс</a>.</li>
+</ul>
+<p><strong>Далі:</strong> <a href="../12-async/">Модуль 12 — Асинхронність</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Повернутись нагору
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Футер" >
+        
+          
+          <a href="../10-errors-and-exceptions/" class="md-footer__link md-footer__link--prev" aria-label="Назад: 10 · Помилки та винятки">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                10 · Помилки та винятки
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../12-async/" class="md-footer__link md-footer__link--next" aria-label="Вперед: 12 · Асинхронність">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                12 · Асинхронність
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0456\u0439\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u0421\u043a\u043e\u043f\u0456\u044e\u0432\u0430\u0442\u0438 \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0429\u0435 1 \u0437\u0431\u0456\u0433 \u043d\u0430 \u0446\u0456\u0439 \u0441\u0442\u043e\u0440\u0456\u043d\u0446\u0456", "search.result.more.other": "\u0429\u0435 # \u0437\u0431\u0456\u0433\u0456\u0432 \u043d\u0430 \u0446\u0456\u0439 \u0441\u0442\u043e\u0440\u0456\u043d\u0446\u0456", "search.result.none": "\u0417\u0431\u0456\u0433\u0456\u0432 \u043d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u0417\u043d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0437\u0431\u0456\u0433", "search.result.other": "\u0417\u043d\u0430\u0439\u0434\u0435\u043d\u043e # \u0437\u0431\u0456\u0433\u0456\u0432", "search.result.placeholder": "\u0420\u043e\u0437\u043f\u043e\u0447\u043d\u0456\u0442\u044c \u043f\u0438\u0441\u0430\u0442\u0438 \u0434\u043b\u044f \u043f\u043e\u0448\u0443\u043a\u0443", "search.result.term.missing": "\u041d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e \u0437\u0430\u043f\u0438\u0442\u0443", "select.version": "\u041e\u0431\u0440\u0430\u0442\u0438 \u0432\u0435\u0440\u0441\u0456\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

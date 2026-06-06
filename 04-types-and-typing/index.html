@@ -1,0 +1,2656 @@
+
+<!doctype html>
+<html lang="uk" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Курс вивчення Python через порівняння зі Swift">
+      
+      
+      
+      
+        <link rel="prev" href="../03-data-structures/conversions/">
+      
+      
+        <link rel="next" href="../05-classes-and-oop/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>04 · Типи та система типів - Python для Swift-розробника</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#модуль-04-складні-типи-та-система-типів" class="md-skip">
+          Перейти до змісту
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Хедер">
+    <a href=".." title="Python для Swift-розробника" class="md-header__button md-logo" aria-label="Python для Swift-розробника" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python для Swift-розробника
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              04 · Типи та система типів
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Темна тема"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Темна тема" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Світла тема"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Світла тема" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Пошук" placeholder="Пошук" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Шукати">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистити" aria-label="Очистити" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Пошук розпочато
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навігація" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python для Swift-розробника" class="md-nav__button md-logo" aria-label="Python для Swift-розробника" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python для Swift-розробника
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Головна
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тематичний індекс
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-tooling-and-mental-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 · Інструментарій і ментальна модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Синтаксис і керування потоком
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    01 · Синтаксис і керування потоком
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-syntax-and-control-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 01. Синтаксис і керування потоком
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-syntax-and-control-flow/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Рядки — довідник методів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-syntax-and-control-flow/match/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structural pattern matching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Функції
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    02 · Функції
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 02. Функції
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-functions/decorators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Декоратори
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Структури даних
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    03 · Структури даних
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 03. Структури даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/dict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dict
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/tuple/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tuple
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/comprehensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comprehensions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/sorting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сортування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-data-structures/conversions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конвертації типів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Типи та система типів
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Типи та система типів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Зміст">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Зміст
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-базові-анотації" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Базові анотації
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-optional--x--none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Optional — X | None
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Optional — X | None">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#narrowing-звуження-типу" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Narrowing (звуження типу)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-union--кілька-можливих-типів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Union — кілька можливих типів
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-type-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Type alias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Type alias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swift_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-312-pep-695" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python (3.12+, PEP 695)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-literal--конкретні-значення-як-тип" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Literal — конкретні значення як тип
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-typeddict--типізований-словник" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. TypedDict — типізований словник
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-newtype--номінальні-обгортки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. NewType — номінальні обгортки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-callable-iterable-та-інші-протоколи-типів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Callable, Iterable та інші протоколи типів
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-any-vs-object--два-будь-що" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Any vs object — два «будь-що»
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-звуження-типів-assert_never-cast-typeguard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Звуження типів: assert_never, cast, TypeGuard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Звуження типів: assert_never, cast, TypeGuard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assert_never--статична-вичерпність-як-у-swift-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        assert_never — статична вичерпність (як у Swift switch)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cast--повір-мені-для-типів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cast — «повір мені» для типів
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typeguard--typeis--власні-функції-звужувачі" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeGuard / TypeIs — власні функції-звужувачі
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-overload--перевантаження-сигнатур" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. @overload — перевантаження сигнатур
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-final-classvar-annotated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Final, ClassVar, Annotated
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-override--безпечне-перевизначення" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. @override — безпечне перевизначення
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-runtime-інтроспекція-анотацій" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Runtime-інтроспекція анотацій
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-generics-та-protocol--короткий-анонс" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Generics та Protocol — короткий анонс
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#інструменти-та-бібліотеки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Інструменти та бібліотеки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-модуля" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices модуля
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#див-також" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Див. також
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Класи та ООП
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    05 · Класи та ООП
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-classes-and-oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 05. Класи та ООП
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-classes-and-oop/dunder-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dunder-методи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-classes-and-oop/descriptors-and-metaclasses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дескриптори та метакласи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-structs-and-value-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · «Структури» та value-типи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-generics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Дженеріки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-protocols-and-interfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Інтерфейси / протоколи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-iterators-and-generators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Ітератори та генератори
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-errors-and-exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Помилки та винятки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-modules-and-packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Модулі, пакети, проєкти
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Асинхронність
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Стандартна бібліотека та екосистема
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    13 · Стандартна бібліотека та екосистема
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 13. Стандартна бібліотека та екосистема
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/files-and-serialization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Файли та серіалізація
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/datetime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дати та час
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/regex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Регулярні вирази
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/subprocess-and-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процеси та ОС
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI-застосунки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/sqlite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQLite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/pytest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тестування (pytest)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stdlib-and-ecosystem/concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Паралелізм
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Зміст">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Зміст
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-базові-анотації" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Базові анотації
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-optional--x--none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Optional — X | None
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Optional — X | None">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#narrowing-звуження-типу" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Narrowing (звуження типу)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-union--кілька-можливих-типів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Union — кілька можливих типів
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-type-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Type alias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Type alias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swift_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-312-pep-695" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python (3.12+, PEP 695)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-literal--конкретні-значення-як-тип" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Literal — конкретні значення як тип
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-typeddict--типізований-словник" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. TypedDict — типізований словник
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-newtype--номінальні-обгортки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. NewType — номінальні обгортки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-callable-iterable-та-інші-протоколи-типів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Callable, Iterable та інші протоколи типів
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-any-vs-object--два-будь-що" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Any vs object — два «будь-що»
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-звуження-типів-assert_never-cast-typeguard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Звуження типів: assert_never, cast, TypeGuard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Звуження типів: assert_never, cast, TypeGuard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#assert_never--статична-вичерпність-як-у-swift-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        assert_never — статична вичерпність (як у Swift switch)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cast--повір-мені-для-типів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cast — «повір мені» для типів
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typeguard--typeis--власні-функції-звужувачі" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeGuard / TypeIs — власні функції-звужувачі
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-overload--перевантаження-сигнатур" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. @overload — перевантаження сигнатур
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-final-classvar-annotated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Final, ClassVar, Annotated
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-override--безпечне-перевизначення" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. @override — безпечне перевизначення
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-runtime-інтроспекція-анотацій" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Runtime-інтроспекція анотацій
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-generics-та-protocol--короткий-анонс" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Generics та Protocol — короткий анонс
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#інструменти-та-бібліотеки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Інструменти та бібліотеки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-модуля" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices модуля
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#див-також" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Див. також
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="модуль-04-складні-типи-та-система-типів">Модуль 04. Складні типи та система типів<a class="headerlink" href="#модуль-04-складні-типи-та-система-типів" title="Permanent link">&para;</a></h1>
+<p><a href="../">← Курс</a> · <a href="../INDEX/">Тематичний індекс</a> · <strong>Модуль 04</strong></p>
+<p>Цей модуль — про те, як повернути собі типобезпеку, до якої ти звик у Swift.
+Python динамічно типізований, але має повноцінну систему <strong>анотацій типів</strong>
+(<a href="https://peps.python.org/pep-0484/">PEP 484</a> і наступники), яку перевіряють
+статичні аналізатори (<code>pyright</code>, <code>mypy</code>). Анотації не впливають на рантайм — це
+суто «компайл-тайм» контракт, як у Swift.</p>
+<h2 id="1-базові-анотації">1. Базові анотації<a class="headerlink" href="#1-базові-анотації" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Vasyl&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">40</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.80</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">active</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;raw&quot;</span>
+</code></pre></div>
+<p>Колекції (сучасний синтаксис, 3.9+ — нижній регістр, без <code>typing.List</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">mapping</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">coords</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">unique</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="2-optional--x--none">2. Optional — <code>X | None</code><a class="headerlink" href="#2-optional--x--none" title="Permanent link">&para;</a></h2>
+<h3 id="swift">Swift<a class="headerlink" href="#swift" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">var</span><span class="w"> </span><span class="nv">middleName</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">?</span><span class="w">           </span><span class="c1">// Optional&lt;String&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">let</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">middleName</span><span class="w"> </span><span class="p">??</span><span class="w"> </span><span class="s">&quot;N/A&quot;</span><span class="w">    </span><span class="c1">// nil-coalescing</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">mn</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">middleName</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">     </span><span class="c1">// unwrap</span>
+</code></pre></div>
+<h3 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">middle_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>        <span class="c1"># сучасний синтаксис (3.10+)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># еквівалент: Optional[str] зі старого typing</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">name</span> <span class="o">=</span> <span class="n">middle_name</span> <span class="ow">or</span> <span class="s2">&quot;N/A&quot;</span>           <span class="c1"># ~ nil-coalescing (обережно з truthiness!)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">name</span> <span class="o">=</span> <span class="n">middle_name</span> <span class="k">if</span> <span class="n">middle_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;N/A&quot;</span>   <span class="c1"># точніше</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">if</span> <span class="n">middle_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>           <span class="c1"># &quot;unwrap&quot;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">middle_name</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>        <span class="c1"># pyright знає: тут str, не None</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка №1.</strong> У Python <strong>немає примусу розгортати Optional</strong>, як у Swift.
+<code>middle_name.upper()</code> без перевірки скомпілюється і впаде в рантаймі з
+<code>AttributeError</code>, якщо там <code>None</code>. Захист дає лише <code>pyright</code>: він позначить
+такий доступ помилкою. Тому strict-режим критичний.</p>
+<p><strong>⚠️ Пастка №2.</strong> <code>x or default</code> спрацює не лише для <code>None</code>, а й для будь-якого
+falsy-значення (<code>0</code>, <code>""</code>, <code>[]</code>). Якщо <code>0</code> — валідне значення, використовуй
+явне <code>x if x is not None else default</code>.</p>
+</blockquote>
+<h3 id="narrowing-звуження-типу">Narrowing (звуження типу)<a class="headerlink" href="#narrowing-звуження-типу" title="Permanent link">&para;</a></h3>
+<p><code>pyright</code> робить type narrowing аналогічно до Swift <code>if let</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="k">return</span> <span class="s2">&quot;empty&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1"># тут value звужено до int</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>           <span class="c1"># тут value звужено до str</span>
+</code></pre></div>
+<h2 id="3-union--кілька-можливих-типів">3. Union — кілька можливих типів<a class="headerlink" href="#3-union--кілька-можливих-типів" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;.&quot;</span> <span class="ow">in</span> <span class="n">raw</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+</code></pre></div>
+<p><code>int | str</code> ≈ Swift enum із двома case, але без обгортки. Для розбору —
+<code>isinstance</code> або <code>match</code> (Модуль 01).</p>
+<h2 id="4-type-alias">4. Type alias<a class="headerlink" href="#4-type-alias" title="Permanent link">&para;</a></h2>
+<h3 id="swift_1">Swift<a class="headerlink" href="#swift_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">typealias</span><span class="w"> </span><span class="n">UserID</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">Int</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">typealias</span><span class="w"> </span><span class="n">JSON</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">String</span><span class="p">:</span><span class="w"> </span><span class="nb">Any</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="python-312-pep-695">Python (3.12+, PEP 695)<a class="headerlink" href="#python-312-pep-695" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">type</span> <span class="n">UserID</span> <span class="o">=</span> <span class="nb">int</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">type</span> <span class="n">Json</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Json&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="s2">&quot;Json&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span>
+</code></pre></div>
+<p>До 3.12:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeAlias</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">UserID</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">int</span>
+</code></pre></div></p>
+<h2 id="5-literal--конкретні-значення-як-тип">5. Literal — конкретні значення як тип<a class="headerlink" href="#5-literal--конкретні-значення-як-тип" title="Permanent link">&para;</a></h2>
+<p>Аналог обмеженого набору, схожий на Swift enum, але на рівні літералів:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">set_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;read&quot;</span><span class="p">,</span> <span class="s2">&quot;write&quot;</span><span class="p">,</span> <span class="s2">&quot;append&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="o">...</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">set_mode</span><span class="p">(</span><span class="s2">&quot;read&quot;</span><span class="p">)</span>        <span class="c1"># OK</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">set_mode</span><span class="p">(</span><span class="s2">&quot;delete&quot;</span><span class="p">)</span>      <span class="c1"># pyright: ПОМИЛКА — не входить у Literal</span>
+</code></pre></div>
+<p>Для справжніх перелічень частіше беруть <code>enum.Enum</code> (Модуль 06), але <code>Literal</code>
+зручний для рядкових прапорців API.</p>
+<h2 id="6-typeddict--типізований-словник">6. TypedDict — типізований словник<a class="headerlink" href="#6-typeddict--типізований-словник" title="Permanent link">&para;</a></h2>
+<p>Коли працюєш із JSON-подібними структурами і не хочеш повноцінний клас:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="n">u</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Vasyl&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="n">u</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>        <span class="c1"># pyright знає, що це str</span>
+</code></pre></div>
+<p>Це найближче до анонімних структур JSON. Але для валідації даних із зовнішнього
+світу краще <code>pydantic</code> (див. нижче й Модуль 06).</p>
+<h2 id="7-newtype--номінальні-обгортки">7. NewType — номінальні обгортки<a class="headerlink" href="#7-newtype--номінальні-обгортки" title="Permanent link">&para;</a></h2>
+<p>Як у Swift, де <code>typealias UserID = Int</code> <em>не</em> створює окремий тип, а тобі хочеться
+розрізняти <code>UserID</code> і <code>ProductID</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NewType</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">UserID</span> <span class="o">=</span> <span class="n">NewType</span><span class="p">(</span><span class="s2">&quot;UserID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">ProductID</span> <span class="o">=</span> <span class="n">NewType</span><span class="p">(</span><span class="s2">&quot;ProductID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="n">uid</span><span class="p">:</span> <span class="n">UserID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">uid</span> <span class="o">=</span> <span class="n">UserID</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">get_user</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>        <span class="c1"># OK</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">get_user</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>         <span class="c1"># pyright: ПОМИЛКА — звичайний int ≠ UserID</span>
+</code></pre></div>
+<p>Це дає номінальну типобезпеку понад структурною, чого у Swift досягають
+окремими типами.</p>
+<h2 id="8-callable-iterable-та-інші-протоколи-типів">8. Callable, Iterable та інші протоколи типів<a class="headerlink" href="#8-callable-iterable-та-інші-протоколи-типів" title="Permanent link">&para;</a></h2>
+<p>З <code>collections.abc</code> (не зі старого <code>typing</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Mapping</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">handler</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span>      <span class="c1"># (Int, String) -&gt; Bool</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">items</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>                     <span class="c1"># будь-що індексоване й раховане</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">config</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>                <span class="c1"># read-only dict-подібне</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Best practice.</strong> Приймай <em>найзагальніший</em> тип на вході (<code>Iterable</code>,
+<code>Sequence</code>, <code>Mapping</code>), повертай <em>конкретний</em> (<code>list</code>, <code>dict</code>). Це принцип
+«liberal in, conservative out» — аналог приймання <code>some Sequence</code> у Swift.</p>
+</blockquote>
+<h2 id="9-any-vs-object--два-будь-що">9. Any vs object — два «будь-що»<a class="headerlink" href="#9-any-vs-object--два-будь-що" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">()</span>       <span class="c1"># ВИМИКАЄ перевірку типів — використовуй рідко</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">y</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">()</span>    <span class="c1"># базовий тип, але перевірка ЛИШАЄТЬСЯ</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка.</strong> <code>Any</code> — це «вимкнути типізацію тут». Зловживання <code>Any</code> зводить
+нанівець <code>pyright</code>. Уникай; якщо треба «щось», бери <code>object</code> і звужуй через
+<code>isinstance</code>. У Swift найближчий «втеча» — <code>Any</code>, але там його теж не люблять.</p>
+</blockquote>
+<h2 id="10-звуження-типів-assert_never-cast-typeguard">10. Звуження типів: <code>assert_never</code>, <code>cast</code>, <code>TypeGuard</code><a class="headerlink" href="#10-звуження-типів-assert_never-cast-typeguard" title="Permanent link">&para;</a></h2>
+<p><code>pyright</code> звужує типи через <code>isinstance</code>, <code>is None</code>, <code>==</code> з <code>Literal</code> тощо
+(розділ 2). Коли цього мало — є явні інструменти.</p>
+<h3 id="assert_never--статична-вичерпність-як-у-swift-switch"><code>assert_never</code> — статична вичерпність (як у Swift switch)<a class="headerlink" href="#assert_never--статична-вичерпність-як-у-swift-switch" title="Permanent link">&para;</a></h3>
+<p>Це твій спосіб отримати «компілятор змусить покрити всі case». Якщо додаси новий
+варіант в <code>Union</code>/<code>enum</code> і забудеш гілку — <code>pyright</code> помилиться <strong>до запуску</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">assert_never</span><span class="p">,</span> <span class="n">Literal</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">cmd</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;stop&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="k">match</span> <span class="n">cmd</span><span class="p">:</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        <span class="k">case</span> <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="k">return</span> <span class="s2">&quot;▶&quot;</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        <span class="k">case</span> <span class="s2">&quot;stop&quot;</span><span class="p">:</span>  <span class="k">return</span> <span class="s2">&quot;⏹&quot;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>            <span class="n">assert_never</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>   <span class="c1"># pyright: error, якщо з&#39;явиться новий Literal</span>
+</code></pre></div>
+<p>У рантаймі <code>assert_never</code> кидає <code>AssertionError</code> — подвійний захист. Деталі
+застосування з ADT — <a href="../06-structs-and-value-types/">Модуль 06</a>.</p>
+<h3 id="cast--повір-мені-для-типів"><code>cast</code> — «повір мені» для типів<a class="headerlink" href="#cast--повір-мені-для-типів" title="Permanent link">&para;</a></h3>
+<p><code>cast(T, x)</code> каже аналізатору «вважай це <code>T</code>», <strong>нічого не роблячи в рантаймі</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">raw</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">()</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">raw</span><span class="p">)</span>    <span class="c1"># у рантаймі raw НЕ перевіряється і НЕ змінюється</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка.</strong> <code>cast</code> — обіцянка, яку компілятор не перевіряє (як <code>as!</code> у Swift,
+але навіть без рантайм-перевірки). Якщо збрехав — отримаєш помилку пізніше.
+Уникай; справжню перевірку дає <code>isinstance</code> або <code>pydantic</code>.</p>
+</blockquote>
+<h3 id="typeguard--typeis--власні-функції-звужувачі"><code>TypeGuard</code> / <code>TypeIs</code> — власні функції-звужувачі<a class="headerlink" href="#typeguard--typeis--власні-функції-звужувачі" title="Permanent link">&para;</a></h3>
+<p>Коли логіка перевірки складна, винеси її у функцію, що <strong>звужує тип</strong> для
+аналізатора (<a href="https://peps.python.org/pep-0742/">PEP 742</a>, <code>TypeIs</code> — 3.13+):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeIs</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_str_list</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">val</span><span class="p">)</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="k">if</span> <span class="n">is_str_list</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>        <span class="c1"># тут pyright знає: items — це list[str]</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">items</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="11-overload--перевантаження-сигнатур">11. <code>@overload</code> — перевантаження сигнатур<a class="headerlink" href="#11-overload--перевантаження-сигнатур" title="Permanent link">&para;</a></h2>
+<p>Python не має перевантаження функцій (друге <code>def</code> перекриває перше). Але для
+типів можна оголосити кілька сигнатур через <code>@overload</code> — корисно, коли тип
+результату залежить від типу аргументу:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">overload</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nd">@overload</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nd">@overload</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>      <span class="c1"># ← єдина РЕАЛІЗАЦІЯ</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="n">reveal</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>      <span class="c1"># pyright: тип str</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="n">reveal2</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;7&quot;</span><span class="p">)</span>   <span class="c1"># pyright: тип int</span>
+</code></pre></div>
+<blockquote>
+<p>Стуби <code>@overload</code> існують лише для аналізатора; у рантаймі викликається тільки
+остання (нестаба) реалізація. Для диспетчеризації за типом у рантаймі —
+<code>functools.singledispatch</code> (<a href="../02-functions/decorators/">декоратори</a>).</p>
+</blockquote>
+<h2 id="12-final-classvar-annotated">12. <code>Final</code>, <code>ClassVar</code>, <code>Annotated</code><a class="headerlink" href="#12-final-classvar-annotated" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Final</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Annotated</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">MAX_RETRIES</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">3</span>            <span class="c1"># pyright заборонить переприсвоєння (≈ Swift let)</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="n">MAX_RETRIES</span> <span class="o">=</span> <span class="mi">5</span>                   <span class="c1"># pyright: error</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>    <span class="n">instances</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># атрибут КЛАСУ, не екземпляра (Модуль 05)</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>                     <span class="c1"># атрибут екземпляра</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1"># Annotated — додати метадані до типу (їх читають pydantic, FastAPI тощо)</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="n">UserId</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;primary key&quot;</span><span class="p">]</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="n">Age</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">150</span><span class="p">)]</span>
+</code></pre></div>
+<p><code>Final</code> — найближче до <code>let</code>/<code>static let</code> у Swift (на рівні аналізатора, не
+рантайму — згадай, що справжніх констант немає, <a href="../01-syntax-and-control-flow/">Модуль 01</a>).</p>
+<h2 id="13-override--безпечне-перевизначення">13. <code>@override</code> — безпечне перевизначення<a class="headerlink" href="#13-override--безпечне-перевизначення" title="Permanent link">&para;</a></h2>
+<p><a href="https://peps.python.org/pep-0698/">PEP 698</a> (3.12+) повертає Swift-овий
+<code>override</code>: позначай перевизначені методи, і <code>pyright</code> помилиться, якщо в
+батьку такого методу немає (захист від одруків):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">override</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">Base</span><span class="p">:</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span class="nd">@override</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>     <span class="c1"># OK</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>    <span class="nd">@override</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">hanlde</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>     <span class="c1"># pyright: error — у Base немає &#39;hanlde&#39;</span>
+</code></pre></div>
+<p>Детальніше про класи — <a href="../05-classes-and-oop/">Модуль 05</a>.</p>
+<h2 id="14-runtime-інтроспекція-анотацій">14. Runtime-інтроспекція анотацій<a class="headerlink" href="#14-runtime-інтроспекція-анотацій" title="Permanent link">&para;</a></h2>
+<p>Анотації доступні в рантаймі (на відміну від Swift, де типи стерті). На цьому
+стоять <code>pydantic</code>, <code>dataclasses</code>, FastAPI:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_type_hints</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="n">f</span><span class="o">.</span><span class="vm">__annotations__</span>       <span class="c1"># {&#39;a&#39;: int, &#39;b&#39;: &#39;str&#39;, &#39;return&#39;: bool}  — сирі, як написано</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="n">get_type_hints</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>       <span class="c1"># {&#39;a&#39;: int, &#39;b&#39;: &lt;class &#39;str&#39;&gt;, ...}     — резолвить рядки/forward-refs</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка.</strong> <code>__annotations__</code> зберігає анотації <strong>як написано</strong> (forward-ref
+<code>"str"</code> лишається рядком). Щоб отримати справжні об'єкти-типи — <code>get_type_hints</code>.</p>
+</blockquote>
+<h2 id="15-generics-та-protocol--короткий-анонс">15. Generics та Protocol — короткий анонс<a class="headerlink" href="#15-generics-та-protocol--короткий-анонс" title="Permanent link">&para;</a></h2>
+<p>Дженеріки (<code>class Stack[T]</code>, <code>TypeVar</code>, <code>ParamSpec</code>, варіантність) — окремий
+<a href="../07-generics/">Модуль 07</a>. Протоколи (structural typing, аналог Swift
+protocols) — <a href="../08-protocols-and-interfaces/">Модуль 08</a>. <code>Self</code>-тип теж там.</p>
+<h2 id="інструменти-та-бібліотеки">Інструменти та бібліотеки<a class="headerlink" href="#інструменти-та-бібліотеки" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>pyright</code></strong> — рекомендований type checker (швидкий, точний, рушій Pylance у
+  VS Code). Альтернатива — <strong><code>mypy</code></strong> (еталонна реалізація).
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pyright
+</code></pre></div></li>
+<li><strong><code>pydantic</code></strong> — валідація даних у рантаймі на основі анотацій типів. Те, чого
+  немає в чистих анотаціях: реальна перевірка вхідних даних (JSON, форми, конфіги).
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="c1"># Валідує і конвертує в рантаймі — кине помилку, якщо дані не підходять</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">model_validate</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Vasyl&quot;</span><span class="p">})</span>  <span class="c1"># &quot;1&quot; -&gt; 1</span>
+</code></pre></div>
+  Це аналог <code>Codable</code> зі Swift, але з валідацією та зрозумілими помилками.</li>
+<li><strong><code>typing_extensions</code></strong> — нові можливості системи типів до того, як вони
+  потраплять у стабільний <code>typing</code>.</li>
+</ul>
+<h2 id="best-practices-модуля">Best practices модуля<a class="headerlink" href="#best-practices-модуля" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Анотуй усе; тримай <code>pyright</code> у <code>strict</code>. Це твоя заміна компілятору Swift.</li>
+<li><code>X | None</code> замість старого <code>Optional[X]</code>; <code>list[int]</code> замість <code>List[int]</code>.</li>
+<li>Перевіряй <code>None</code> через <code>is</code>/<code>is not</code>, дай <code>pyright</code> зробити narrowing.</li>
+<li><code>Literal</code> для рядкових прапорців, <code>enum</code> для справжніх перелічень.</li>
+<li><code>NewType</code> для номінального розрізнення «однакових» примітивів.</li>
+<li><code>pydantic</code> для будь-яких даних із зовнішнього світу.</li>
+<li>Уникай <code>Any</code>; бери <code>object</code> + <code>isinstance</code>, коли тип невідомий.</li>
+<li><code>assert_never</code> для вичерпності; <code>@override</code> проти одруків; <code>Final</code> для констант.</li>
+<li><code>cast</code> — крайній засіб; надавай перевагу <code>isinstance</code>/<code>TypeIs</code>/<code>pydantic</code>.</li>
+</ul>
+<h2 id="див-також">Див. також<a class="headerlink" href="#див-також" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../01-syntax-and-control-flow/match/">Модуль 01 · match</a> — <code>assert_never</code>, патерни.</li>
+<li><a href="../05-classes-and-oop/">Модуль 05 — Класи</a> — <code>@override</code>, <code>ClassVar</code>, <code>@property</code>.</li>
+<li><a href="../06-structs-and-value-types/">Модуль 06 — Value-типи</a> — <code>pydantic</code>, ADT, <code>TypedDict</code> vs dataclass.</li>
+<li><a href="../07-generics/">Модуль 07 — Дженеріки</a> — <code>TypeVar</code>, <code>ParamSpec</code>, <code>Self</code>, варіантність.</li>
+<li><a href="../08-protocols-and-interfaces/">Модуль 08 — Протоколи</a> — structural typing.</li>
+<li><a href="../INDEX/">Тематичний індекс</a>.</li>
+</ul>
+<p><strong>Далі:</strong> <a href="../05-classes-and-oop/">Модуль 05 — Класи та ООП</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Повернутись нагору
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Футер" >
+        
+          
+          <a href="../03-data-structures/conversions/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Конвертації типів">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Конвертації типів
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../05-classes-and-oop/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Модуль 05. Класи та ООП">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Модуль 05. Класи та ООП
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0456\u0439\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u0421\u043a\u043e\u043f\u0456\u044e\u0432\u0430\u0442\u0438 \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0429\u0435 1 \u0437\u0431\u0456\u0433 \u043d\u0430 \u0446\u0456\u0439 \u0441\u0442\u043e\u0440\u0456\u043d\u0446\u0456", "search.result.more.other": "\u0429\u0435 # \u0437\u0431\u0456\u0433\u0456\u0432 \u043d\u0430 \u0446\u0456\u0439 \u0441\u0442\u043e\u0440\u0456\u043d\u0446\u0456", "search.result.none": "\u0417\u0431\u0456\u0433\u0456\u0432 \u043d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u0417\u043d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0437\u0431\u0456\u0433", "search.result.other": "\u0417\u043d\u0430\u0439\u0434\u0435\u043d\u043e # \u0437\u0431\u0456\u0433\u0456\u0432", "search.result.placeholder": "\u0420\u043e\u0437\u043f\u043e\u0447\u043d\u0456\u0442\u044c \u043f\u0438\u0441\u0430\u0442\u0438 \u0434\u043b\u044f \u043f\u043e\u0448\u0443\u043a\u0443", "search.result.term.missing": "\u041d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e \u0437\u0430\u043f\u0438\u0442\u0443", "select.version": "\u041e\u0431\u0440\u0430\u0442\u0438 \u0432\u0435\u0440\u0441\u0456\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

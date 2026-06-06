@@ -1,0 +1,2806 @@
+
+<!doctype html>
+<html lang="uk" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Курс вивчення Python через порівняння зі Swift">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../descriptors-and-metaclasses/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Dunder-методи - Python для Swift-розробника</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-життєвий-цикл-та-представлення" class="md-skip">
+          Перейти до змісту
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Хедер">
+    <a href="../.." title="Python для Swift-розробника" class="md-header__button md-logo" aria-label="Python для Swift-розробника" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python для Swift-розробника
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dunder-методи
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Темна тема"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Темна тема" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Світла тема"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Світла тема" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Пошук" placeholder="Пошук" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Шукати">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистити" aria-label="Очистити" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Пошук розпочато
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навігація" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python для Swift-розробника" class="md-nav__button md-logo" aria-label="Python для Swift-розробника" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python для Swift-розробника
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Головна
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тематичний індекс
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-tooling-and-mental-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 · Інструментарій і ментальна модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Синтаксис і керування потоком
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    01 · Синтаксис і керування потоком
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-syntax-and-control-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 01. Синтаксис і керування потоком
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-syntax-and-control-flow/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Рядки — довідник методів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-syntax-and-control-flow/match/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structural pattern matching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Функції
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    02 · Функції
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 02. Функції
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-functions/decorators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Декоратори
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Структури даних
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    03 · Структури даних
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-data-structures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 03. Структури даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-data-structures/list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-data-structures/dict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dict
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-data-structures/set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-data-structures/tuple/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tuple
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-data-structures/comprehensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comprehensions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-data-structures/sorting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сортування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-data-structures/conversions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конвертації типів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-types-and-typing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Типи та система типів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Класи та ООП
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    05 · Класи та ООП
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 05. Класи та ООП
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dunder-методи
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dunder-методи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Зміст">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Зміст
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-життєвий-цикл-та-представлення" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Життєвий цикл та представлення
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Життєвий цикл та представлення">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__init__--__new__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__ / __new__
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__repr__-vs-__str__-vs-__format__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __repr__ vs __str__ vs __format__
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-рівність-та-впорядкування" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Рівність та впорядкування
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Рівність та впорядкування">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__eq__-і-правило-notimplemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __eq__ і правило NotImplemented
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__hash__--правило-яке-кусає" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __hash__ — правило, яке кусає
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#впорядкування-__lt____le____gt____ge__--total_ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Впорядкування: __lt__/__le__/__gt__/__ge__ + total_ordering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-числові-оператори" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Числові оператори
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-протокол-контейнера" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Протокол контейнера
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-доступ-до-атрибутів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Доступ до атрибутів
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-callable--обєкт-як-функція" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Callable — об'єкт як функція
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-контекст-менеджер" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Контекст-менеджер
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-конвертації-та-істинність" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Конвертації та істинність
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-кастомізація-класів-тизер" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Кастомізація класів (тизер)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#шпаргалка--рецепти" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Шпаргалка / рецепти
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#див-також" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Див. також
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../descriptors-and-metaclasses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дескриптори та метакласи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-structs-and-value-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · «Структури» та value-типи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-generics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Дженеріки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-protocols-and-interfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Інтерфейси / протоколи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-iterators-and-generators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Ітератори та генератори
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-errors-and-exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Помилки та винятки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-modules-and-packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Модулі, пакети, проєкти
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Асинхронність
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Стандартна бібліотека та екосистема
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    13 · Стандартна бібліотека та екосистема
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-stdlib-and-ecosystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модуль 13. Стандартна бібліотека та екосистема
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-stdlib-and-ecosystem/files-and-serialization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Файли та серіалізація
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-stdlib-and-ecosystem/datetime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дати та час
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-stdlib-and-ecosystem/regex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Регулярні вирази
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-stdlib-and-ecosystem/subprocess-and-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процеси та ОС
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-stdlib-and-ecosystem/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI-застосунки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-stdlib-and-ecosystem/sqlite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQLite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-stdlib-and-ecosystem/pytest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тестування (pytest)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-stdlib-and-ecosystem/concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Паралелізм
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Зміст">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Зміст
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-життєвий-цикл-та-представлення" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Життєвий цикл та представлення
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Життєвий цикл та представлення">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__init__--__new__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__ / __new__
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__repr__-vs-__str__-vs-__format__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __repr__ vs __str__ vs __format__
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-рівність-та-впорядкування" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Рівність та впорядкування
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Рівність та впорядкування">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__eq__-і-правило-notimplemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __eq__ і правило NotImplemented
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__hash__--правило-яке-кусає" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __hash__ — правило, яке кусає
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#впорядкування-__lt____le____gt____ge__--total_ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Впорядкування: __lt__/__le__/__gt__/__ge__ + total_ordering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-числові-оператори" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Числові оператори
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-протокол-контейнера" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Протокол контейнера
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-доступ-до-атрибутів" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Доступ до атрибутів
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-callable--обєкт-як-функція" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Callable — об'єкт як функція
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-контекст-менеджер" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Контекст-менеджер
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-конвертації-та-істинність" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Конвертації та істинність
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-кастомізація-класів-тизер" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Кастомізація класів (тизер)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#шпаргалка--рецепти" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Шпаргалка / рецепти
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#див-також" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Див. також
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Dunder-методи</h1>
+
+<p><a href="../../">← Курс</a> · <a href="../">Модуль 05</a> · <strong>Dunder-методи</strong></p>
+<p>«Dunder» = <strong>d</strong>ouble <strong>under</strong>score (<code>__name__</code>). Це гачки, через які Python
+вбудовує твій тип у мову: <code>+</code>, <code>==</code>, <code>len()</code>, <code>for</code>, <code>with</code>, <code>[]</code>, виклик <code>()</code>.
+У Swift це робота <strong>протоколів</strong> (<code>Equatable</code>, <code>Comparable</code>, <code>ExpressibleByX</code>,
+<code>subscript</code>, <code>callable</code>); у Python — набір спеціальних методів. Дві ключові
+відмінності від Swift:</p>
+<ul>
+<li>Це <strong>duck typing, а не номінальні протоколи</strong>: тип «вміє ітеруватися», якщо
+  має <code>__iter__</code>, незалежно від ієрархії. Не треба оголошувати конформність.</li>
+<li>Інтерпретатор шукає dunder-методи <strong>на типі</strong>, а не на екземплярі: <code>len(x)</code>
+  кличе <code>type(x).__len__(x)</code>, а не <code>x.__len__</code>.</li>
+</ul>
+<p>Нижче — повний каталог за категоріями. Майже все це для класів-«даних»
+згенерує <code>@dataclass</code> (<a href="../../06-structs-and-value-types/">Модуль 06</a>) — пиши
+руками лише там, де потрібна нестандартна семантика.</p>
+<hr />
+<h2 id="1-життєвий-цикл-та-представлення">1. Життєвий цикл та представлення<a class="headerlink" href="#1-життєвий-цикл-та-представлення" title="Permanent link">&para;</a></h2>
+<h3 id="__init__--__new__"><code>__init__</code> / <code>__new__</code><a class="headerlink" href="#__init__--__new__" title="Permanent link">&para;</a></h3>
+<p><code>__init__</code> — це <strong>ініціалізатор</strong> (об'єкт уже створено), а не конструктор.
+Створенням займається <code>__new__</code> (рідко перевизначається — для immutable-типів,
+синглтонів, метакласів). 99% часу пишеш лише <code>__init__</code> (див.
+<a href="../">Модуль 05 §1</a>). <code>__new__</code> детально —
+<a href="../descriptors-and-metaclasses/">дескриптори та метакласи</a>.</p>
+<h3 id="__repr__-vs-__str__-vs-__format__"><code>__repr__</code> vs <code>__str__</code> vs <code>__format__</code><a class="headerlink" href="#__repr__-vs-__str__-vs-__format__" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Хто кличе</th>
+<th>Swift-аналог</th>
+<th>Призначення</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>__repr__</code></td>
+<td><code>repr()</code>, REPL, дебагер, <code>repr</code> у контейнерах</td>
+<td><code>CustomDebugStringConvertible</code></td>
+<td>однозначне, для розробника</td>
+</tr>
+<tr>
+<td><code>__str__</code></td>
+<td><code>str()</code>, <code>print()</code>, <code>f"{x}"</code> (як fallback)</td>
+<td><code>CustomStringConvertible</code></td>
+<td>читабельне, для користувача</td>
+</tr>
+<tr>
+<td><code>__format__</code></td>
+<td><code>format()</code>, <code>f"{x:spec}"</code></td>
+<td><code>String(format:)</code> / spec</td>
+<td>форматування зі спецификатором</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Money</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cents</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cents</span> <span class="o">=</span> <span class="n">cents</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>                  <span class="c1"># завжди визначай це</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Money(cents=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cents</span><span class="si">}</span><span class="s2">)&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>                   <span class="c1"># для print/користувача</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cents</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__format__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>     <span class="c1"># f&quot;{m:spec}&quot;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">if</span> <span class="n">spec</span> <span class="o">==</span> <span class="s2">&quot;full&quot;</span><span class="p">:</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cents</span><span class="si">}</span><span class="s2"> cents&quot;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="k">return</span> <span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cents</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>   <span class="c1"># делегуємо float</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">m</span> <span class="o">=</span> <span class="n">Money</span><span class="p">(</span><span class="mi">1599</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nb">repr</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>        <span class="c1"># &#39;Money(cents=1599)&#39;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>         <span class="c1"># &#39;$15.99&#39;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">&quot;</span>         <span class="c1"># &#39;15.99&#39;   ← порожній spec → __format__(&quot;&quot;) → format(15.99, &quot;&quot;)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span>     <span class="c1"># &#39;16.0&#39;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">full</span><span class="si">}</span><span class="s2">&quot;</span>    <span class="c1"># &#39;1599 cents&#39;</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка: f-string кличе <code>__format__</code>, не <code>__str__</code>.</strong> <code>f"{m}"</code>
+(без spec) йде у <code>__format__("")</code>, а не в <code>__str__</code>. У базовому <code>object</code>
+<code>__format__("")</code> повертає <code>str(self)</code>, тож якщо <code>__format__</code> не визначати —
+усе працює очікувано. Але <strong>визначивши <code>__format__</code>, не забудь обробити
+порожній spec</strong>, інакше <code>print(m)</code> і <code>f"{m}"</code> дадуть різний результат.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Swift: два окремі протоколи</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">Money</span><span class="p">:</span><span class="w"> </span><span class="n">CustomStringConvertible</span><span class="p">,</span><span class="w"> </span><span class="n">CustomDebugStringConvertible</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">cents</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="n">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$%.2f&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Double</span><span class="p">(</span><span class="n">cents</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">debugDescription</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;Money(cents: </span><span class="si">\(</span><span class="n">cents</span><span class="si">)</span><span class="s">)&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>Якщо <code>__str__</code> не визначено, <code>str()</code>/<code>print()</code> <strong>падають назад на <code>__repr__</code></strong>.
+Тому одного <code>__repr__</code> достатньо для базового дебагу:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">NoStr</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="k">return</span> <span class="s2">&quot;NoStr()&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">str</span><span class="p">(</span><span class="n">NoStr</span><span class="p">())</span>   <span class="c1"># &#39;NoStr()&#39;  — fallback на __repr__</span>
+</code></pre></div>
+<p><code>__bytes__</code> викликається <code>bytes(obj)</code> — серіалізація у байти:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Money</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">cents</span> <span class="o">=</span> <span class="n">c</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__bytes__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cents</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">bytes</span><span class="p">(</span><span class="n">Money</span><span class="p">(</span><span class="mi">1599</span><span class="p">))</span>   <span class="c1"># b&#39;\x00\x00\x06?&#39;</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Best practice.</strong> <strong>Завжди визначай <code>__repr__</code></strong> — це безцінно в логах,
+дебагері й під час падінь у тестах. <code>__str__</code> додавай лише коли потрібне
+окреме «людське» представлення.</p>
+</blockquote>
+<hr />
+<h2 id="2-рівність-та-впорядкування">2. Рівність та впорядкування<a class="headerlink" href="#2-рівність-та-впорядкування" title="Permanent link">&para;</a></h2>
+<h3 id="__eq__-і-правило-notimplemented"><code>__eq__</code> і правило <code>NotImplemented</code><a class="headerlink" href="#__eq__-і-правило-notimplemented" title="Permanent link">&para;</a></h3>
+<p><code>__eq__</code> — аналог <code>Equatable</code>. Для «чужого» типу повертай <strong><code>NotImplemented</code></strong>
+(не <code>False</code>!): тоді Python спробує <code>other.__eq__(self)</code>, і лише якщо й там
+<code>NotImplemented</code> — повертає <code>False</code>. Це дозволяє іншому типу визначити рівність
+із твоїм.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Money</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cents</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">cents</span> <span class="o">=</span> <span class="n">cents</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Money</span><span class="p">):</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>            <span class="k">return</span> <span class="bp">NotImplemented</span>            <span class="c1"># НЕ False</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cents</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">cents</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cents</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">Money</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">==</span> <span class="n">Money</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>   <span class="c1"># True</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">Money</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">==</span> <span class="mi">100</span>          <span class="c1"># False  (NotImplemented → fallback → False)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="n">Money</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;x&quot;</span>          <span class="c1"># False</span>
+</code></pre></div>
+<h3 id="__hash__--правило-яке-кусає"><code>__hash__</code> — правило, яке кусає<a class="headerlink" href="#__hash__--правило-яке-кусає" title="Permanent link">&para;</a></h3>
+<p><strong>Визначивши <code>__eq__</code>, ти втрачаєш успадкований <code>__hash__</code></strong> — клас стає
+<strong>нехешованим</strong> (його не можна покласти в <code>set</code>/dict-ключ). Логіка: рівні
+об'єкти зобов'язані мати рівний хеш, і Python не вгадає твою рівність:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Pt</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Pt</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="c1"># __hash__ НЕ визначено</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">{</span><span class="n">Pt</span><span class="p">(</span><span class="mi">1</span><span class="p">)}</span>        <span class="c1"># TypeError: unhashable type: &#39;Pt&#39;  (3.14 додає &quot;cannot use &#39;Pt&#39; as a set element&quot;)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">Pt</span><span class="o">.</span><span class="fm">__hash__</span>    <span class="c1"># None  ← саме так Python «прибирає» хеш</span>
+</code></pre></div>
+<p>Три варіанти дій:</p>
+<ul>
+<li><strong>Незмінний value-тип</strong> → визнач <code>__hash__</code> на тих самих полях, що й <code>__eq__</code>.</li>
+<li><strong>Mutable-об'єкт</strong> → залиш нехешованим (<code>__hash__ = None</code> явно). Хешований
+  mutable — баг: зміниш поле, і об'єкт «загубиться» в set.</li>
+<li>Хочеш дефолтну identity-рівність — не визначай <code>__eq__</code> взагалі.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Money</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">cents</span> <span class="o">=</span> <span class="n">c</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span> <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">Money</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">cents</span> <span class="o">==</span> <span class="n">o</span><span class="o">.</span><span class="n">cents</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cents</span><span class="p">)</span>   <span class="c1"># ті самі поля, що в __eq__</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nb">len</span><span class="p">({</span><span class="n">Money</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">Money</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">Money</span><span class="p">(</span><span class="mi">200</span><span class="p">)})</span>   <span class="c1"># 2  — дедуплікація працює</span>
+</code></pre></div>
+<p>Це прямо стосується set/dict-ключів із <a href="../../03-data-structures/">Модуля 03</a>:
+ключем словника може бути лише хешований об'єкт. У Swift це <code>Hashable</code> +
+<code>Equatable</code> разом.</p>
+<h3 id="впорядкування-__lt____le____gt____ge__--total_ordering">Впорядкування: <code>__lt__</code>/<code>__le__</code>/<code>__gt__</code>/<code>__ge__</code> + <code>total_ordering</code><a class="headerlink" href="#впорядкування-__lt____le____gt____ge__--total_ordering" title="Permanent link">&para;</a></h3>
+<p>Для сортування й порівнянь (<code>Comparable</code>). Python для <code>sorted()</code> достатньо
+<code>__lt__</code>. Щоб не писати всі шість методів вручну — <code>functools.total_ordering</code>
+згенерує решту з <code>__eq__</code> + <code>__lt__</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">total_ordering</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nd">@total_ordering</span>                  <span class="c1"># генерує &gt;, &gt;=, &lt;= з __eq__ і __lt__</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">Version</span><span class="p">:</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">):</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">major</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minor</span> <span class="o">=</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">major</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minor</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">major</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">minor</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">major</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minor</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">major</span><span class="p">,</span> <span class="n">o</span><span class="o">.</span><span class="n">minor</span><span class="p">)</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="n">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>   <span class="c1"># True</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="n">Version</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>    <span class="c1"># True</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="nb">sorted</span><span class="p">([</span><span class="n">Version</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)])</span>   <span class="c1"># працює без key=</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Swift: Comparable дає всі оператори з одного &lt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">Version</span><span class="p">:</span><span class="w"> </span><span class="nb">Comparable</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">major</span><span class="p">,</span><span class="w"> </span><span class="n">minor</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="p">:</span><span class="w"> </span><span class="n">Version</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">:</span><span class="w"> </span><span class="n">Version</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Bool</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">major</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">minor</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">major</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">minor</span><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Best practice.</strong> <code>@total_ordering</code> зручний, але повільніший за повний
+ручний набір. Для record-типів <code>@dataclass(order=True, frozen=True)</code> генерує
+<code>__eq__</code>, усі порівняння <strong>і</strong> <code>__hash__</code> автоматично —
+<a href="../../06-structs-and-value-types/">Модуль 06</a>. Пиши dunder-и руками лише за
+нестандартної семантики.</p>
+</blockquote>
+<hr />
+<h2 id="3-числові-оператори">3. Числові оператори<a class="headerlink" href="#3-числові-оператори" title="Permanent link">&para;</a></h2>
+<p>Бінарні (<code>__add__</code>, <code>__sub__</code>, <code>__mul__</code>, <code>__truediv__</code> для <code>/</code>,
+<code>__floordiv__</code> для <code>//</code>, <code>__mod__</code> для <code>%</code>, <code>__pow__</code> для <code>**</code>) та унарні
+(<code>__neg__</code> для <code>-x</code>, <code>__abs__</code> для <code>abs(x)</code>).</p>
+<p><strong>Reflected</strong> (<code>__radd__</code>, <code>__rmul__</code>, …) кличеться, коли лівий операнд <strong>не
+вміє</strong> додавати правий: для <code>3 * v</code> Python спершу пробує <code>int.__mul__(3, v)</code>
+(повертає <code>NotImplemented</code>), потім <code>v.__rmul__(3)</code>.</p>
+<p><strong>In-place</strong> (<code>__iadd__</code>, <code>__imul__</code>, …) — для <code>+=</code>. Якщо <code>__iadd__</code> не
+визначено, <code>x += y</code> стає <code>x = x + y</code> (нове прив'язування через <code>__add__</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Vec</span><span class="p">:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Vec(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">)&quot;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span> <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">Vec</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">==</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="n">o</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>                       <span class="c1"># v + w</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">Vec</span><span class="p">):</span> <span class="k">return</span> <span class="n">Vec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="n">o</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="n">o</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>        <span class="k">return</span> <span class="bp">NotImplemented</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>  <span class="k">return</span> <span class="n">Vec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>    <span class="c1"># v * 3</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>           <span class="c1"># 3 * v</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>     <span class="k">return</span> <span class="n">Vec</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>     <span class="c1"># -v</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>     <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="n">Vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">Vec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1"># Vec(4, 6)</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="n">Vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span>           <span class="c1"># Vec(3, 6)   — __mul__</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="mi">3</span> <span class="o">*</span> <span class="n">Vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>           <span class="c1"># Vec(3, 6)   — __rmul__ (int не знає Vec)</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="o">-</span><span class="n">Vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>              <span class="c1"># Vec(-1, -2)</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="nb">abs</span><span class="p">(</span><span class="n">Vec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>          <span class="c1"># 5.0</span>
+</code></pre></div>
+<p>Без <code>__iadd__</code> оператор <code>+=</code> створює <strong>новий</strong> об'єкт (як value-семантика):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">a</span> <span class="o">=</span> <span class="n">Vec</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">a</span> <span class="o">+=</span> <span class="n">Vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>          <span class="c1"># a = a + Vec(1,1) через __add__</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="ow">is</span> <span class="n">b</span>            <span class="c1"># (Vec(1, 1), Vec(0, 0), False)  ← b не змінився</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка: reflected повертає <code>NotImplemented</code>, а не кидає виняток.</strong>
+Якщо забути <code>__radd__</code>/<code>__rmul__</code>, то <code>3 * v</code> дасть <code>TypeError</code>, навіть коли
+<code>v * 3</code> працює. Для комутативних операцій реалізуй обидва (<code>__rmul__ =
+__mul__</code> як скорочення).</p>
+</blockquote>
+<hr />
+<h2 id="4-протокол-контейнера">4. Протокол контейнера<a class="headerlink" href="#4-протокол-контейнера" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Операція</th>
+<th>Swift-аналог</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>__len__</code></td>
+<td><code>len(x)</code></td>
+<td><code>count</code> (Collection)</td>
+</tr>
+<tr>
+<td><code>__getitem__</code></td>
+<td><code>x[i]</code>, <code>x[a:b]</code></td>
+<td><code>subscript(_:) { get }</code></td>
+</tr>
+<tr>
+<td><code>__setitem__</code></td>
+<td><code>x[i] = v</code></td>
+<td><code>subscript(_:) { set }</code></td>
+</tr>
+<tr>
+<td><code>__delitem__</code></td>
+<td><code>del x[i]</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>__contains__</code></td>
+<td><code>v in x</code></td>
+<td><code>contains(_:)</code></td>
+</tr>
+<tr>
+<td><code>__iter__</code></td>
+<td><code>for v in x</code></td>
+<td><code>Sequence</code> / <code>makeIterator()</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Vector</span><span class="p">:</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">comps</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_c</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">comps</span><span class="p">)</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Vector</span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_c</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_c</span><span class="p">)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>  <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>      <span class="c1"># підтримує і slice</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>  <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span> <span class="k">return</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_c</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_c</span><span class="p">)</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="n">v</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>              <span class="c1"># 4</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>                <span class="c1"># 2</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>              <span class="c1"># [2, 3]   — slice прокидається у list</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>           <span class="c1"># __setitem__  → Vector(99, 2, 3, 4)</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="k">del</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>            <span class="c1"># __delitem__  → Vector(2, 3, 4)</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="mi">3</span> <span class="ow">in</span> <span class="n">v</span>              <span class="c1"># True      — __contains__</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span>    <span class="c1"># [4, 6, 8] — __iter__</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">// Swift: subscript + Sequence</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">Vector</span><span class="p">:</span><span class="w"> </span><span class="n">Sequence</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">c</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">Double</span><span class="p">]</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="kd">subscript</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Double</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">        </span><span class="kr">get</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">set</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">newValue</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">makeIterator</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="n">IndexingIterator</span><span class="o">&lt;</span><span class="p">[</span><span class="nb">Double</span><span class="p">]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">makeIterator</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Best practice.</strong> Якщо немає <code>__iter__</code>, але є <code>__getitem__</code> з цілими
+індексами від 0, Python усе одно зітерує (старий протокол послідовності).
+Але краще явно дати <code>__iter__</code>. Повноцінний ітератор з <code>__next__</code>,
+генератори й лінива ітерація — <a href="../../09-iterators-and-generators/">Модуль 09</a>.</p>
+</blockquote>
+<hr />
+<h2 id="5-доступ-до-атрибутів">5. Доступ до атрибутів<a class="headerlink" href="#5-доступ-до-атрибутів" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Коли кличеться</th>
+<th>Ризик</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>__getattribute__</code></td>
+<td>на <strong>кожен</strong> доступ <code>x.attr</code></td>
+<td>легко зациклити</td>
+</tr>
+<tr>
+<td><code>__getattr__</code></td>
+<td>лише коли звичайний пошук <strong>не знайшов</strong></td>
+<td>безпечніший</td>
+</tr>
+<tr>
+<td><code>__setattr__</code></td>
+<td>на кожне <code>x.attr = v</code></td>
+<td>легко зациклити</td>
+</tr>
+<tr>
+<td><code>__delattr__</code></td>
+<td>на <code>del x.attr</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>__dir__</code></td>
+<td><code>dir(x)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>__getattr__</code> — головний інструмент проксі/динамічних атрибутів. Кличеться
+<strong>тільки на промах</strong> звичайного пошуку:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Proxy</span><span class="p">:</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>              <span class="c1"># лише коли атрибут НЕ знайдено</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">p</span> <span class="o">=</span> <span class="n">Proxy</span><span class="p">({</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="n">p</span><span class="o">.</span><span class="n">_data</span>        <span class="c1"># {&#39;foo&#39;: 1}  — знайдено напряму, __getattr__ не кличеться</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="n">p</span><span class="o">.</span><span class="n">foo</span>          <span class="c1"># 1           — промах атрибута → __getattr__ → _data[&quot;foo&quot;]</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="n">p</span><span class="o">.</span><span class="n">bar</span>          <span class="c1"># None        — промах → _data.get(&quot;bar&quot;)</span>
+</code></pre></div>
+<p><code>__getattribute__</code> перехоплює <strong>геть усе</strong> (навіть <code>self._data</code>), тому всередині
+треба делегувати в <code>super()</code>, інакше — нескінченна рекурсія:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Logged</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;access: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>   <span class="c1"># делегуємо, НЕ self.&lt;...&gt;</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка: нескінченна рекурсія в <code>__setattr__</code>.</strong> Усередині <code>__setattr__</code>
+рядок <code>self.name = value</code> знову кличе <code>__setattr__</code> → стек переповнюється.
+Виправлення — <code>super().__setattr__(...)</code> або пряма робота з <code>self.__dict__</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Bad</span><span class="p">:</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>      <span class="c1"># ✅ обходить __setattr__</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        <span class="c1"># self.name = value              # ❌ нескінченна рекурсія</span>
+</code></pre></div>
+</blockquote>
+<p>Типове застосування — frozen-об'єкт (immutability через заборону присвоєнь):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Frozen</span><span class="p">:</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>        <span class="c1"># обходимо власний __setattr__</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;frozen&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">f</span> <span class="o">=</span> <span class="n">Frozen</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">f</span><span class="o">.</span><span class="n">x</span>            <span class="c1"># 7</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="n">f</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">9</span>        <span class="c1"># AttributeError: frozen</span>
+</code></pre></div>
+<p><code>__dir__</code> кастомізує вивід <code>dir()</code> (Python його <strong>сортує</strong>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">WithDir</span><span class="p">:</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;custom&quot;</span><span class="p">,</span> <span class="s2">&quot;attrs&quot;</span><span class="p">]</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nb">dir</span><span class="p">(</span><span class="n">WithDir</span><span class="p">())</span>   <span class="c1"># [&#39;attrs&#39;, &#39;custom&#39;]</span>
+</code></pre></div>
+<hr />
+<h2 id="6-callable--обєкт-як-функція">6. Callable — об'єкт як функція<a class="headerlink" href="#6-callable--обєкт-як-функція" title="Permanent link">&para;</a></h2>
+<p><code>__call__</code> робить екземпляр викликуваним: <code>obj(args)</code> → <code>obj.__call__(args)</code>.
+Це функтор зі станом (аналог Swift <code>callAsFunction</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Multiplier</span><span class="p">:</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="n">double</span> <span class="o">=</span> <span class="n">Multiplier</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="n">double</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>          <span class="c1"># 42</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="nb">callable</span><span class="p">(</span><span class="n">double</span><span class="p">)</span>    <span class="c1"># True</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">// Swift: callAsFunction</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="kd">struct</span><span class="w"> </span><span class="nc">Multiplier</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nv">factor</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">callAsFunction</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Int</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">}</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="kd">let</span><span class="w"> </span><span class="nv">double</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Multiplier</span><span class="p">(</span><span class="n">factor</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="w">   </span><span class="c1">// 42</span>
+</code></pre></div>
+<p>Декоратори-класи, кешувальники, конфігуровані стратегії — типові кейси для
+<code>__call__</code>.</p>
+<hr />
+<h2 id="7-контекст-менеджер">7. Контекст-менеджер<a class="headerlink" href="#7-контекст-менеджер" title="Permanent link">&para;</a></h2>
+<p><code>__enter__</code>/<code>__exit__</code> обслуговують <code>with</code> — детермінований cleanup (як Swift
+<code>defer</code>, але прив'язаний до блоку). <code>__exit__</code> отримує деталі винятку (або три
+<code>None</code>, якщо без винятку) і керує його придушенням через return-значення:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Timer</span><span class="p">:</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;enter&quot;</span><span class="p">);</span> <span class="k">return</span> <span class="bp">self</span>            <span class="c1"># значення йде в &#39;as&#39;</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc</span><span class="p">,</span> <span class="n">tb</span><span class="p">):</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exit&quot;</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">)</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>        <span class="k">return</span> <span class="kc">False</span>                           <span class="c1"># НЕ придушувати виняток</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="k">with</span> <span class="n">Timer</span><span class="p">()</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="c1"># enter / body / exit None</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Best practice.</strong> <code>return True</code> з <code>__exit__</code> <strong>проковтне</strong> виняток — роби це
+свідомо. Для простих менеджерів зручніший <code>@contextlib.contextmanager</code>
+поверх генератора. Деталі та обробка винятків — <a href="../../10-errors-and-exceptions/">Модуль 10</a>.</p>
+</blockquote>
+<hr />
+<h2 id="8-конвертації-та-істинність">8. Конвертації та істинність<a class="headerlink" href="#8-конвертації-та-істинність" title="Permanent link">&para;</a></h2>
+<p><code>__bool__</code> визначає істинність в <code>if</code>/<code>while</code>. Якщо його немає — Python
+<strong>падає назад на <code>__len__</code></strong> (порожній контейнер = <code>False</code>); якщо немає й
+<code>__len__</code> — об'єкт завжди <code>True</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Box</span><span class="p">:</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">items</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>    <span class="c1"># bool падає назад на len</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="nb">bool</span><span class="p">(</span><span class="n">Box</span><span class="p">([]))</span>     <span class="c1"># False</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="nb">bool</span><span class="p">(</span><span class="n">Box</span><span class="p">([</span><span class="mi">1</span><span class="p">]))</span>    <span class="c1"># True</span>
+</code></pre></div>
+<p><code>__int__</code> (<code>int(x)</code>), <code>__float__</code> (<code>float(x)</code>), <code>__index__</code> (для <strong>точного</strong>
+цілочисельного контексту: зрізи, <code>bin()</code>/<code>hex()</code>, <code>range</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Temp</span><span class="p">:</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">c</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>   <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__float__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__index__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>      <span class="c1"># для slice/hex/bin</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="nb">bool</span><span class="p">(</span><span class="n">Temp</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>               <span class="c1"># False</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="nb">int</span><span class="p">(</span><span class="n">Temp</span><span class="p">(</span><span class="mf">3.7</span><span class="p">))</span>              <span class="c1"># 3</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="nb">float</span><span class="p">(</span><span class="n">Temp</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>              <span class="c1"># 3.0</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">][</span><span class="n">Temp</span><span class="p">(</span><span class="mi">2</span><span class="p">):]</span> <span class="c1"># [&#39;c&#39;, &#39;d&#39;]   — __index__ у зрізі</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="nb">hex</span><span class="p">(</span><span class="n">Temp</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span>              <span class="c1"># &#39;0xff&#39;        — __index__</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ Пастка: <code>__index__</code> ≠ <code>__int__</code>.</strong> Зрізи й <code>hex()</code>/<code>bin()</code> вимагають
+<strong><code>__index__</code></strong>, а не <code>__int__</code>. <code>__int__</code> — для «лосі» конвертації
+(як <code>Int(x)</code>); <code>__index__</code> каже «я <strong>є</strong> цілим без втрат» — Python не
+приймає <code>float.__index__</code>, тому <code>x[1.0:]</code> падає, а кастомний <code>__index__</code>
+працює.</p>
+</blockquote>
+<hr />
+<h2 id="9-кастомізація-класів-тизер">9. Кастомізація класів (тизер)<a class="headerlink" href="#9-кастомізація-класів-тизер" title="Permanent link">&para;</a></h2>
+<p>Просунуті гачки, що керують <strong>створенням і поведінкою самих класів</strong>, а не
+екземплярів:</p>
+<ul>
+<li><strong><code>__init_subclass__</code></strong> — кличеться при оголошенні <strong>підкласу</strong> (реєстрація
+  плагінів, валідація ієрархії) — легша альтернатива метакласу.</li>
+<li><strong><code>__set_name__</code></strong> — дескриптор дізнається ім'я, під яким його присвоїли в
+  класі (основа <code>@property</code>-подібних об'єктів).</li>
+<li><strong><code>__class_getitem__</code></strong> — <code>MyClass[int]</code> (узагальнені типи, <a href="../../07-generics/">Модуль 07</a>).</li>
+<li><strong>метаклас <code>__call__</code></strong> — перехоплює <code>MyClass(...)</code> (синглтони, кешування
+  екземплярів).</li>
+</ul>
+<p>Усе це — окрема тема: <a href="../descriptors-and-metaclasses/">дескриптори, <code>__slots__</code>, метакласи, MRO</a>.</p>
+<hr />
+<h2 id="шпаргалка--рецепти">Шпаргалка / рецепти<a class="headerlink" href="#шпаргалка--рецепти" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Категорія</th>
+<th>Dunder</th>
+<th>Викликає</th>
+<th>Swift-аналог</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Життєвий цикл</strong></td>
+<td><code>__init__</code></td>
+<td><code>T(...)</code></td>
+<td><code>init</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__new__</code></td>
+<td>створення (рідко)</td>
+<td><code>init</code> (immutable/factory)</td>
+</tr>
+<tr>
+<td><strong>Представлення</strong></td>
+<td><code>__repr__</code></td>
+<td><code>repr()</code>, REPL, дебаг</td>
+<td><code>CustomDebugStringConvertible</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__str__</code></td>
+<td><code>str()</code>, <code>print()</code></td>
+<td><code>CustomStringConvertible</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__format__</code></td>
+<td><code>f"{x:spec}"</code>, <code>format()</code></td>
+<td><code>String(format:)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__bytes__</code></td>
+<td><code>bytes()</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Рівність</strong></td>
+<td><code>__eq__</code></td>
+<td><code>==</code> (→ <code>NotImplemented</code>!)</td>
+<td><code>Equatable</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__hash__</code></td>
+<td><code>hash()</code>, set/dict-ключ</td>
+<td><code>Hashable</code></td>
+</tr>
+<tr>
+<td><strong>Порядок</strong></td>
+<td><code>__lt__</code> <code>__le__</code> <code>__gt__</code> <code>__ge__</code></td>
+<td><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td>
+<td><code>Comparable</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>@total_ordering</code></td>
+<td>генерує решту з <code>&lt;</code>+<code>==</code></td>
+<td>(Comparable дає все з <code>&lt;</code>)</td>
+</tr>
+<tr>
+<td><strong>Числа</strong></td>
+<td><code>__add__</code> <code>__sub__</code> <code>__mul__</code></td>
+<td><code>+</code> <code>-</code> <code>*</code></td>
+<td>оператори</td>
+</tr>
+<tr>
+<td></td>
+<td><code>__truediv__</code> <code>__floordiv__</code> <code>__mod__</code> <code>__pow__</code></td>
+<td><code>/</code> <code>//</code> <code>%</code> <code>**</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__neg__</code> <code>__abs__</code></td>
+<td><code>-x</code> <code>abs(x)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__radd__</code> …</td>
+<td>reflected (<code>3 * v</code>)</td>
+<td>—</td>
+</tr>
+<tr>
+<td></td>
+<td><code>__iadd__</code> …</td>
+<td>in-place (<code>+=</code>)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Контейнер</strong></td>
+<td><code>__len__</code></td>
+<td><code>len(x)</code></td>
+<td><code>count</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__getitem__</code> <code>__setitem__</code> <code>__delitem__</code></td>
+<td><code>x[i]</code>, <code>x[i]=v</code>, <code>del x[i]</code></td>
+<td><code>subscript</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__contains__</code></td>
+<td><code>v in x</code></td>
+<td><code>contains</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__iter__</code></td>
+<td><code>for v in x</code></td>
+<td><code>Sequence</code></td>
+</tr>
+<tr>
+<td><strong>Атрибути</strong></td>
+<td><code>__getattr__</code></td>
+<td>доступ на <strong>промах</strong></td>
+<td><code>dynamicMemberLookup</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>__getattribute__</code></td>
+<td><strong>кожен</strong> доступ</td>
+<td>—</td>
+</tr>
+<tr>
+<td></td>
+<td><code>__setattr__</code> <code>__delattr__</code></td>
+<td><code>x.a=v</code>, <code>del x.a</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td></td>
+<td><code>__dir__</code></td>
+<td><code>dir(x)</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Виклик</strong></td>
+<td><code>__call__</code></td>
+<td><code>x(...)</code></td>
+<td><code>callAsFunction</code></td>
+</tr>
+<tr>
+<td><strong>Контекст</strong></td>
+<td><code>__enter__</code> <code>__exit__</code></td>
+<td><code>with x:</code></td>
+<td>(<code>defer</code>)</td>
+</tr>
+<tr>
+<td><strong>Конвертації</strong></td>
+<td><code>__bool__</code></td>
+<td><code>if x:</code> (fallback <code>__len__</code>)</td>
+<td>(немає)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>__int__</code> <code>__float__</code> <code>__index__</code></td>
+<td><code>int()</code> <code>float()</code> / зрізи</td>
+<td><code>ExpressibleByX</code> (обернено)</td>
+</tr>
+<tr>
+<td><strong>Класи</strong></td>
+<td><code>__init_subclass__</code> <code>__set_name__</code> <code>__class_getitem__</code></td>
+<td>оголошення/дескриптори/generics</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Мінімальний value-тип уручну (краще @dataclass — Модуль 06):</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">:</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>               <span class="c1"># ЗАВЖДИ</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>                  <span class="c1"># → NotImplemented для чужого типу</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span> <span class="k">return</span> <span class="bp">NotImplemented</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>        <span class="o">...</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>               <span class="c1"># ті самі поля, що в __eq__ (або = None)</span>
+</code></pre></div>
+<h2 id="див-також">Див. також<a class="headerlink" href="#див-також" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../">Модуль 05 — Класи та ООП</a> — базові класи, <code>@property</code>, спадкування.</li>
+<li><a href="../descriptors-and-metaclasses/">Дескриптори, <code>__slots__</code>, метакласи, MRO</a> — <code>__new__</code>, <code>__set_name__</code>, <code>__init_subclass__</code>, метакласи зсередини.</li>
+<li><a href="../../06-structs-and-value-types/">Модуль 06 — Value-типи</a> — <code>@dataclass</code> генерує <code>__init__</code>/<code>__repr__</code>/<code>__eq__</code>/<code>__hash__</code>/порядок автоматично.</li>
+<li><a href="../../09-iterators-and-generators/">Модуль 09 — Ітератори та генератори</a> — повний <code>__iter__</code>/<code>__next__</code>, лінива ітерація.</li>
+<li><a href="../../10-errors-and-exceptions/">Модуль 10 — Помилки та винятки</a> — <code>__enter__</code>/<code>__exit__</code>, <code>@contextmanager</code>.</li>
+<li><a href="../../INDEX/">Тематичний індекс</a>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Повернутись нагору
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Футер" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Назад: Модуль 05. Класи та ООП">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Модуль 05. Класи та ООП
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../descriptors-and-metaclasses/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Дескриптори та метакласи">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Дескриптори та метакласи
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0456\u0439\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u0421\u043a\u043e\u043f\u0456\u044e\u0432\u0430\u0442\u0438 \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0429\u0435 1 \u0437\u0431\u0456\u0433 \u043d\u0430 \u0446\u0456\u0439 \u0441\u0442\u043e\u0440\u0456\u043d\u0446\u0456", "search.result.more.other": "\u0429\u0435 # \u0437\u0431\u0456\u0433\u0456\u0432 \u043d\u0430 \u0446\u0456\u0439 \u0441\u0442\u043e\u0440\u0456\u043d\u0446\u0456", "search.result.none": "\u0417\u0431\u0456\u0433\u0456\u0432 \u043d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u0417\u043d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0437\u0431\u0456\u0433", "search.result.other": "\u0417\u043d\u0430\u0439\u0434\u0435\u043d\u043e # \u0437\u0431\u0456\u0433\u0456\u0432", "search.result.placeholder": "\u0420\u043e\u0437\u043f\u043e\u0447\u043d\u0456\u0442\u044c \u043f\u0438\u0441\u0430\u0442\u0438 \u0434\u043b\u044f \u043f\u043e\u0448\u0443\u043a\u0443", "search.result.term.missing": "\u041d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e \u0437\u0430\u043f\u0438\u0442\u0443", "select.version": "\u041e\u0431\u0440\u0430\u0442\u0438 \u0432\u0435\u0440\u0441\u0456\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
