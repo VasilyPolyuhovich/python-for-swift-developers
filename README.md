@@ -83,3 +83,9 @@ uv run python
 ```
 
 Деталі — у [Модулі 00](00-tooling-and-mental-model.md).
+
+---
+
+## Автор
+
+**Vasyl Poliukhovych** — [GitHub](https://github.com/VasilyPolyuhovich).
