@@ -1,0 +1,15 @@
+# MkDocs build output
+site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Робочий план (внутрішній артефакт)
+_ENRICHMENT-PLAN.md
+
+# OS
+.DS_Store
+Thumbs.db
